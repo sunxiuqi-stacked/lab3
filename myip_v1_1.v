@@ -109,7 +109,7 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
 			
 				
    // Total number of input data.
-   localparam NUMBER_OF_INPUT_WORDS  = 576; // 2**A_depth_bits + 2**B_depth_bits = 12 for assignment 1
+   localparam NUMBER_OF_INPUT_WORDS  = 520; // 2**A_depth_bits + 2**B_depth_bits = 12 for assignment 1
 
    // Total number of output data
    localparam NUMBER_OF_OUTPUT_WORDS = 64; // 2**RES_depth_bits = 2 for assignment 1
