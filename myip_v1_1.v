@@ -131,6 +131,7 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
    // Accumulator to hold sum of inputs read at any point in time
    reg [31:0] sum;
    reg [8:0] RES_size;
+   reg m_axis_valid = 0;
 
    // Counters to store the number inputs read & outputs written
    reg [NUMBER_OF_INPUT_WORDS - 1:0] nr_of_reads;   // to do : change it as necessary
@@ -144,7 +145,7 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
    // consistent with the sequence they are written
 
    assign S_AXIS_TREADY = (state == Read_Inputs);
-   assign M_AXIS_TVALID = (output_state == Write_output);
+   assign M_AXIS_TVALID = m_axis_valid;
    assign M_AXIS_TLAST = write_done;
 
    assign M_AXIS_TDATA = sum;
@@ -158,7 +159,7 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
         begin
            // CAUTION: make sure your reset polarity is consistent with the
            // system reset polarity
-           RES_size = 1<<(RES_depth_bits);
+           RES_size = NUMBER_OF_OUTPUT_WORDS;
            state        <= Idle;
            nr_of_reads <= NUMBER_OF_INPUT_WORDS;
            //reset the write addresses for A and B
@@ -183,7 +184,7 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
             if (S_AXIS_TVALID == 1)
             begin
             	nr_of_reads <= NUMBER_OF_INPUT_WORDS;
-            	RES_size = 1<<(RES_depth_bits);
+            	RES_size = NUMBER_OF_OUTPUT_WORDS;
             	//reset the write addresses for A and B
             	A_write_address <= 0;
             	B_write_address <= 0;
@@ -278,6 +279,7 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
    					
    					Write_output:
    						begin
+   						m_axis_valid <= 1;
    						if(RES_read_address == RES_size)
    						begin
    							write_done <= 1;
@@ -289,6 +291,7 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
    							output_state <= Read_output;
    							end
    						end
+   						
                  endcase
 			else
 				begin
