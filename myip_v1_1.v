@@ -285,6 +285,7 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
    							write_done <= 1;
    							output_state <= Idle_output;
    							RES_read_address <= 0;
+   							m_axis_valid <= 0;
    						end
    						else
    							begin
