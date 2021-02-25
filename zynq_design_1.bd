@@ -1069,34 +1069,10 @@
           "processing_system7_0/DDR"
         ]
       },
-      "axi_smc_M02_AXI": {
+      "axi_gpio_0_GPIO": {
         "interface_ports": [
-          "axi_smc/M02_AXI",
-          "axi_fifo_mm_s_0/S_AXI"
-        ]
-      },
-      "axi_bram_ctrl_0_BRAM_PORTB": {
-        "interface_ports": [
-          "axi_bram_ctrl_0_bram/BRAM_PORTB",
-          "axi_bram_ctrl_0/BRAM_PORTB"
-        ]
-      },
-      "processing_system7_0_M_AXI_GP0": {
-        "interface_ports": [
-          "processing_system7_0/M_AXI_GP0",
-          "axi_smc/S00_AXI"
-        ]
-      },
-      "axi_bram_ctrl_0_BRAM_PORTA": {
-        "interface_ports": [
-          "axi_bram_ctrl_0_bram/BRAM_PORTA",
-          "axi_bram_ctrl_0/BRAM_PORTA"
-        ]
-      },
-      "processing_system7_0_FIXED_IO": {
-        "interface_ports": [
-          "FIXED_IO",
-          "processing_system7_0/FIXED_IO"
+          "leds_8bits",
+          "axi_gpio_0/GPIO"
         ]
       },
       "axi_smc_M01_AXI": {
@@ -1105,22 +1081,46 @@
           "axi_gpio_0/S_AXI"
         ]
       },
-      "axi_gpio_0_GPIO": {
-        "interface_ports": [
-          "leds_8bits",
-          "axi_gpio_0/GPIO"
-        ]
-      },
       "myip_0_M_AXIS": {
         "interface_ports": [
           "myip_0/M_AXIS",
           "axi_fifo_mm_s_0/AXI_STR_RXD"
         ]
       },
+      "axi_smc_M02_AXI": {
+        "interface_ports": [
+          "axi_smc/M02_AXI",
+          "axi_fifo_mm_s_0/S_AXI"
+        ]
+      },
       "axi_fifo_mm_s_0_AXI_STR_TXD": {
         "interface_ports": [
           "axi_fifo_mm_s_0/AXI_STR_TXD",
           "myip_0/S_AXIS"
+        ]
+      },
+      "processing_system7_0_M_AXI_GP0": {
+        "interface_ports": [
+          "processing_system7_0/M_AXI_GP0",
+          "axi_smc/S00_AXI"
+        ]
+      },
+      "axi_bram_ctrl_0_BRAM_PORTB": {
+        "interface_ports": [
+          "axi_bram_ctrl_0_bram/BRAM_PORTB",
+          "axi_bram_ctrl_0/BRAM_PORTB"
+        ]
+      },
+      "processing_system7_0_FIXED_IO": {
+        "interface_ports": [
+          "FIXED_IO",
+          "processing_system7_0/FIXED_IO"
+        ]
+      },
+      "axi_bram_ctrl_0_BRAM_PORTA": {
+        "interface_ports": [
+          "axi_bram_ctrl_0_bram/BRAM_PORTA",
+          "axi_bram_ctrl_0/BRAM_PORTA"
         ]
       }
     },
