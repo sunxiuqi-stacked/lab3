@@ -131,7 +131,7 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
    // Accumulator to hold sum of inputs read at any point in time
    reg [31:0] sum;
    reg [8:0] RES_size;
-   reg m_axis_valid = 0;
+   //reg m_axis_valid = 0;
 
    // Counters to store the number inputs read & outputs written
    reg [NUMBER_OF_INPUT_WORDS - 1:0] nr_of_reads;   // to do : change it as necessary
@@ -145,7 +145,7 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
    // consistent with the sequence they are written
 
    assign S_AXIS_TREADY = (state == Read_Inputs);
-   assign M_AXIS_TVALID = m_axis_valid;
+   assign M_AXIS_TVALID = (output_state == Write_output);
    assign M_AXIS_TLAST = write_done;
 
    assign M_AXIS_TDATA = sum;
@@ -266,22 +266,23 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
                 case (output_state)               	
                 	Idle_output:
                 		begin
+                		//m_axis_valid <= 0;
                 		RES_read_en <= 1;
                 		output_state <= Read_output;
                 		end
-                	
+           
                 	Read_output:
                 		begin
+                		//m_axis_valid <= 0;
                     	sum <= RES_read_data_out;
                     	RES_read_address <= RES_read_address + 1;
                     	output_state <= Write_output;
    						end
-   					
    					Write_output:
    						begin
-   						m_axis_valid <= 1;
+   						//m_axis_valid <= 1;
    						if(RES_read_address == RES_size)
-   						begin
+   						begin   
    							write_done <= 1;
    							output_state <= Idle_output;
    							RES_read_address <= 0;
@@ -296,7 +297,7 @@ input                          M_AXIS_TREADY;  // Connected slave device is read
 			else
 				begin
 				write_done <= 0;
-				m_axis_valid <= 0;
+				//m_axis_valid <= 0;
 				state <= Idle;
 				end
 			end
