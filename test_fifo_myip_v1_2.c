@@ -129,7 +129,7 @@ int main()
 
 		/******************** Input to Coprocessor : Transmit the Data Stream ***********************/
 
-		xil_printf(" Transmitting Data for test case %d ... \r\n", test_case_cnt);
+		//xil_printf(" Transmitting Data for test case %d ... \r\n", test_case_cnt);
 
 		/* Writing into the FIFO Transmit Port Buffer */
 		for (word_cnt=0 ; word_cnt < NUMBER_OF_INPUT_WORDS ; word_cnt++){
@@ -149,7 +149,7 @@ int main()
 
 		/******************** Output from Coprocessor : Receive the Data Stream ***********************/
 
-		xil_printf(" Receiving data for test case %d ... \r\n", test_case_cnt);
+		//xil_printf(" Receiving data for test case %d ... \r\n", test_case_cnt);
 
 		int timeout_count = TIMEOUT_VALUE;
 		// wait for coprocessor to send data, subject to a timeout
@@ -170,10 +170,10 @@ int main()
 			result_memory[word_cnt+test_case_cnt*NUMBER_OF_OUTPUT_WORDS] = XLlFifo_RxGetWord(InstancePtr);
 		}
 
-		xil_printf("Success receiving data! \r\n");
+		//xil_printf("Success receiving data! \r\n");
 //
 		for(word_cnt = 0; word_cnt < NUMBER_OF_TEST_VECTORS*NUMBER_OF_OUTPUT_WORDS; word_cnt++){
-			xil_printf("%d,",result_memory[word_cnt]);
+			//xil_printf("%d,",result_memory[word_cnt]);
 		}
 
 //		Status = XLlFifo_IsRxDone(InstancePtr);
@@ -192,7 +192,7 @@ int main()
 	success = 1;
 
 	/* Compare the data send with the data received */
-	xil_printf(" Comparing data ...\r\n");
+	//xil_printf(" Comparing data ...\r\n");
 	for(word_cnt=0; word_cnt < NUMBER_OF_TEST_VECTORS*NUMBER_OF_OUTPUT_WORDS; word_cnt++){
 		success = success & (result_memory[word_cnt] == test_result_expected_memory[word_cnt]);
 	}
@@ -202,7 +202,7 @@ int main()
 		return XST_FAILURE;
 	}
 
-	xil_printf("Test Success\r\n");
+	//xil_printf("Test Success\r\n");
 
 	for(word_cnt=0 ; word_cnt < NUMBER_OF_TEST_VECTORS*NUMBER_OF_OUTPUT_WORDS; word_cnt++){
 		printf("%d\n",result_memory[word_cnt]);
